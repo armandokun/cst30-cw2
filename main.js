@@ -24,6 +24,10 @@ c.socket.on('open', function () {
         console.log(r);
         console.log('** CURRENT USER INFORMATION END **');
     });
+    c.queryHeadsetId().then(function (r) {
+        console.log(r);
+        console.log('** DEVICE INFO END **');
+    });
 });
 // ---------- sub data stream
 // have six kind of stream data ['fac', 'pow', 'eeg', 'mot', 'met', 'com']

@@ -180,10 +180,10 @@ var Cortex = /** @class */ (function () {
             socket.on('message', function (data) {
                 try {
                     if (JSON.parse(data)['id'] === QUERY_HEADSET_ID) {
-                        console.log(data);
                         // console.log(JSON.parse(data)['result'].length);
                         if (JSON.parse(data)['result'].length > 0) {
-                            var headsetId = JSON.parse(data)['result'][0]['id'];
+                            var headsetId = JSON.parse(data)['result'][0];
+                            console.log('** DEVICE INFO *');
                             resolve(headsetId);
                         }
                         else {

@@ -28,6 +28,10 @@ c.socket.on('open', function () {
         console.log(r);
         console.log('** CURRENT USER INFORMATION END **');
     });
+    c.queryHeadsetId().then(r => {
+        console.log(r);
+        console.log('** DEVICE INFO END **')
+    });
 });
 
 // ---------- sub data stream

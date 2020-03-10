@@ -154,11 +154,11 @@ export default class Cortex {
             socket.on('message', (data) => {
                 try {
                     if (JSON.parse(data)['id'] === QUERY_HEADSET_ID) {
-                        console.log(data);
                         // console.log(JSON.parse(data)['result'].length);
                         if (JSON.parse(data)['result'].length > 0) {
-                            let headsetId = JSON.parse(data)['result'][0]['id'];
-                            resolve(headsetId)
+                            let headsetId = JSON.parse(data)['result'][0];
+                            console.log('** DEVICE INFO *');
+                            resolve(headsetId);
                         } else {
                             console.log('No have any headset, please connect headset with your pc.')
                         }
