@@ -8,7 +8,7 @@ dotenv.config();
 // console.log ENVIRONMENT VARIABLES for APIs
 console.log('*** EMOTIV\'S API CONFIG DETAILS *** ' +
     '\n\tAPP_NAME: ' + process.env.APP_NAME + '\n\tAPP_ID: ' + process.env.APP_ID +
-    '\n\tCLIENT_ID: ' + process.env.CLIENT_ID + '\n*** THE END ***');
+    '\n*** THE END ***');
 
 // Credentials
 let socketUrl = 'wss://localhost:6868';
@@ -20,24 +20,33 @@ let user = {
 };
 
 let c: Cortex = new Cortex(user, socketUrl);
-
-// Executes this piece of code when websockets has been opened
-c.socket.on('open', function () {
-    console.log('WebSocket Client: STATUS - OPEN');
-    c.getUserInformation().then(r => {
-        console.log(r);
-        console.log('** CURRENT USER INFORMATION END **');
-    });
-    c.queryHeadsetId().then(r => {
-        console.log(r);
-        console.log('** DEVICE INFO END **')
-    });
+let headsetId: string;
+let authToken: string;
+let sessionId: string;
+// Executes this piece of code when websockets server has been opened
+c.socket.on('open', async function () {
+    await init().then(r => console.log(r));
 });
 
-// ---------- sub data stream
-// have six kind of stream data ['fac', 'pow', 'eeg', 'mot', 'met', 'com']
-// user could sub one or many stream at once
-// let streams = ['met'];
+async function init() {
 
-// Streams subscribed: EEG and Performance Metrics
-// c.sub(streams);
+    // get Authtoken
+    await c.authorize()
+        .then(response => authToken = response.toString());
+
+    // get UserInfo, only access with authtoken
+    await c.getUserInformation(authToken)
+        .then(r => {
+            console.log(r);
+            console.log('** CURRENT USER INFORMATION END **');
+        });
+
+    // get headset ID
+    await c.queryHeadsetId()
+        .then(response => headsetId = response.toString()
+        );
+
+    await c.createSession(authToken, headsetId)
+        .then(r => sessionId = r.toString()
+        );
+}

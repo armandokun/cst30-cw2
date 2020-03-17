@@ -56,7 +56,7 @@ var Cortex = /** @class */ (function () {
     }
     /** Authentication
      * - this section is for authorising and retrieving info about the user
-    */
+     */
     Cortex.prototype.requestAccess = function () {
         var socket = this.socket;
         var user = this.user;
@@ -117,7 +117,7 @@ var Cortex = /** @class */ (function () {
         });
     };
     // Check if user is logged in through Emotiv App
-    Cortex.prototype.getUserInformation = function () {
+    Cortex.prototype.getUserInformation = function (authToken) {
         return __awaiter(this, void 0, void 0, function () {
             var cortexToken, socket;
             return __generator(this, function (_a) {
@@ -128,11 +128,6 @@ var Cortex = /** @class */ (function () {
                     case 1:
                         // Ask the user to approve this application
                         _a.sent();
-                        // Generate Cortex Token
-                        return [4 /*yield*/, this.authorize().then(function (r) { return cortexToken = r; })];
-                    case 2:
-                        // Generate Cortex Token
-                        _a.sent();
                         socket = this.socket;
                         return [2 /*return*/, new Promise(function (resolve, reject) {
                                 var REQUEST_ACCESS_ID = 1;
@@ -141,7 +136,7 @@ var Cortex = /** @class */ (function () {
                                     "jsonrpc": "2.0",
                                     "method": "getUserInformation",
                                     "params": {
-                                        "cortexToken": cortexToken
+                                        "cortexToken": authToken
                                     }
                                 };
                                 socket.send(JSON.stringify(requestAccessRequest));
@@ -172,8 +167,7 @@ var Cortex = /** @class */ (function () {
         var queryHeadsetRequest = {
             "jsonrpc": "2.0",
             "id": QUERY_HEADSET_ID,
-            "method": "queryHeadsets",
-            "params": {}
+            "method": "queryHeadsets"
         };
         return new Promise(function (resolve, reject) {
             socket.send(JSON.stringify(queryHeadsetRequest));
@@ -183,21 +177,31 @@ var Cortex = /** @class */ (function () {
                         // console.log(JSON.parse(data)['result'].length);
                         if (JSON.parse(data)['result'].length > 0) {
                             var headsetId = JSON.parse(data)['result'][0];
-                            console.log('** DEVICE INFO *');
-                            resolve(headsetId);
+                            switch (headsetId['status']) {
+                                case 'discovered':
+                                    console.error('Cortex has detected the headset, but it is not connected. You cannot create a session for a discovered headset.');
+                                    break;
+                                case 'connecting':
+                                    console.log('Cortex is trying to connect to this headset. This can take a few seconds.');
+                                    break;
+                                case 'connected':
+                                    console.log('Cortex is connected to and receives data from this headset. You can call createSession and start working with this headset.');
+                                    break;
+                            }
+                            resolve(headsetId['id']);
                         }
                         else {
-                            console.log('No have any headset, please connect headset with your pc.');
+                            console.error('No have any headset, please connect headset with your pc.');
                         }
                     }
                 }
                 catch (error) {
-                    console.log(error);
-                    reject();
+                    reject(error);
                 }
             });
         });
     };
+    // toggles the device to reconnect in case of an error
     Cortex.prototype.controlDevice = function (headsetId) {
         var socket = this.socket;
         var CONTROL_DEVICE_ID = 3;
@@ -225,32 +229,34 @@ var Cortex = /** @class */ (function () {
             });
         });
     };
+    /** Sessions
+     * - this section is for creating/stopping/marking sessions
+     */
     Cortex.prototype.createSession = function (authToken, headsetId) {
         var socket = this.socket;
         var CREATE_SESSION_ID = 5;
-        var createSessionRequest = {
+        var createSessionRequestOpen = {
             "jsonrpc": "2.0",
             "id": CREATE_SESSION_ID,
             "method": "createSession",
             "params": {
                 "cortexToken": authToken,
                 "headset": headsetId,
-                "status": "active"
+                "status": "open"
             }
         };
         return new Promise(function (resolve, reject) {
-            socket.send(JSON.stringify(createSessionRequest));
+            socket.send(JSON.stringify(createSessionRequestOpen));
             socket.on('message', function (data) {
-                // console.log(data)
                 try {
-                    if (JSON.parse(data)['id'] == CREATE_SESSION_ID) {
+                    if (JSON.parse(data)['id'] === CREATE_SESSION_ID) {
                         var sessionId = JSON.parse(data)['result']['id'];
                         resolve(sessionId);
                     }
                 }
                 catch (error) {
-                    console.log(error);
-                    reject();
+                    console.log(data);
+                    reject('Error in calling createSession in Cortex Class');
                 }
             });
         });

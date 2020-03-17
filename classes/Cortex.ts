@@ -17,7 +17,7 @@ export default class Cortex {
     public user: any;
     public authToken: string;
     private sessionId: string;
-    private headsetId: string;
+    public headsetId: string;
     private ctResult: string;
 
 
@@ -32,7 +32,8 @@ export default class Cortex {
 
     /** Authentication
      * - this section is for authorising and retrieving info about the user
-    */
+     */
+
     requestAccess() {
         let socket = this.socket;
         let user = this.user;
@@ -93,14 +94,12 @@ export default class Cortex {
             })
         })
     }
+
     // Check if user is logged in through Emotiv App
-    async getUserInformation() {
-        let cortexToken;
+    async getUserInformation(authToken) {
+        let cortexToken: string;
         // Ask the user to approve this application
         await this.requestAccess().then(r => console.log(r));
-
-        // Generate Cortex Token
-        await this.authorize().then(r => cortexToken = r);
 
         let socket = this.socket;
 
@@ -111,7 +110,7 @@ export default class Cortex {
                 "jsonrpc": "2.0",
                 "method": "getUserInformation",
                 "params": {
-                    "cortexToken": cortexToken
+                    "cortexToken": authToken
                 }
             };
 
@@ -138,6 +137,7 @@ export default class Cortex {
     /** Headsets
      * - this section is for headset control
      */
+
     queryHeadsetId() {
         const QUERY_HEADSET_ID = 2;
         let socket = this.socket;
@@ -145,8 +145,7 @@ export default class Cortex {
         let queryHeadsetRequest = {
             "jsonrpc": "2.0",
             "id": QUERY_HEADSET_ID,
-            "method": "queryHeadsets",
-            "params": {}
+            "method": "queryHeadsets"
         };
 
         return new Promise(function (resolve, reject) {
@@ -156,21 +155,35 @@ export default class Cortex {
                     if (JSON.parse(data)['id'] === QUERY_HEADSET_ID) {
                         // console.log(JSON.parse(data)['result'].length);
                         if (JSON.parse(data)['result'].length > 0) {
+
                             let headsetId = JSON.parse(data)['result'][0];
-                            console.log('** DEVICE INFO *');
-                            resolve(headsetId);
+
+                            switch (headsetId['status']) {
+                                case 'discovered':
+                                    console.error('Cortex has detected the headset, but it is not connected. You cannot create a session for a discovered headset.');
+                                    break;
+                                case 'connecting':
+                                    console.log('Cortex is trying to connect to this headset. This can take a few seconds.');
+                                    break;
+                                case 'connected':
+                                    console.log('Cortex is connected to and receives data from this headset. You can call createSession and start working with this headset.');
+                                    break;
+                            }
+
+                            resolve(headsetId['id']);
+
                         } else {
-                            console.log('No have any headset, please connect headset with your pc.')
+                            console.error('No have any headset, please connect headset with your pc.');
                         }
                     }
                 } catch (error) {
-                    console.log(error);
-                    reject();
+                    reject(error);
                 }
             })
         })
     }
 
+    // toggles the device to reconnect in case of an error
     controlDevice(headsetId) {
         let socket = this.socket;
         const CONTROL_DEVICE_ID = 3;
@@ -198,33 +211,38 @@ export default class Cortex {
         })
     }
 
+    /** Sessions
+     * - this section is for creating/stopping/marking sessions
+     */
+
     createSession(authToken, headsetId) {
         let socket = this.socket;
         const CREATE_SESSION_ID = 5;
-        let createSessionRequest = {
+
+        let createSessionRequestOpen = {
             "jsonrpc": "2.0",
             "id": CREATE_SESSION_ID,
             "method": "createSession",
             "params": {
                 "cortexToken": authToken,
                 "headset": headsetId,
-                "status": "active"
+                "status": "open"
             }
         };
+
         return new Promise(function (resolve, reject) {
-            socket.send(JSON.stringify(createSessionRequest));
+            socket.send(JSON.stringify(createSessionRequestOpen));
             socket.on('message', (data) => {
-                // console.log(data)
                 try {
-                    if (JSON.parse(data)['id'] == CREATE_SESSION_ID) {
+                    if (JSON.parse(data)['id'] === CREATE_SESSION_ID) {
                         let sessionId = JSON.parse(data)['result']['id'];
-                        resolve(sessionId)
+                        resolve(sessionId);
                     }
                 } catch (error) {
-                    console.log(error);
-                    reject();
+                    console.log(data);
+                    reject('Error in calling createSession in Cortex Class');
                 }
-            })
+            });
         })
     }
 

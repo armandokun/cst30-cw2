@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ff27507-98c9-4c52-aefc-c226caea6a1b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/Cortex.js" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cortex.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/Cortex.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cortex.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/Cortex.ts" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cortex.ts" afterDir="false" />
@@ -102,7 +103,9 @@
       <workItem from="1583612358659" duration="201000" />
       <workItem from="1583618029099" duration="860000" />
       <workItem from="1583779134528" duration="329000" />
-      <workItem from="1583779483975" duration="19421000" />
+      <workItem from="1583779483975" duration="25182000" />
+      <workItem from="1583951800183" duration="450000" />
+      <workItem from="1584464868012" duration="4423000" />
     </task>
     <servers />
   </component>
@@ -112,8 +115,6 @@
       <list>
         <option value="$PROJECT_DIR$/main.js" />
         <option value="$PROJECT_DIR$/main.js.map" />
-        <option value="$PROJECT_DIR$/CortexClass.js" />
-        <option value="$PROJECT_DIR$/CortexClass.js.map" />
       </list>
     </option>
   </component>
@@ -122,7 +123,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
