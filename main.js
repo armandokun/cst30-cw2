@@ -52,51 +52,20 @@ var user = {
     "debit": 1
 };
 var c = new Cortex_1.default(user, socketUrl);
-var headsetId;
-var authToken;
-var sessionId;
+// let headsetId: string;
+// let authToken: string;
+// let sessionId: string;
+var streams;
 // Executes this piece of code when websockets server has been opened
-c.socket.on('open', function () {
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, init().then(function (r) { return console.log(r); })];
-                case 1:
-                    _a.sent();
-                    return [2 /*return*/];
-            }
-        });
-    });
-});
+init().then(function (r) { return console.log(r); });
 function init() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: 
-                // get Authtoken
-                return [4 /*yield*/, c.authorize()
-                        .then(function (response) { return authToken = response.toString(); })];
+                case 0:
+                    streams = ['met'];
+                    return [4 /*yield*/, c.sub(streams)];
                 case 1:
-                    // get Authtoken
-                    _a.sent();
-                    // get UserInfo, only access with authtoken
-                    return [4 /*yield*/, c.getUserInformation(authToken)
-                            .then(function (r) {
-                            console.log(r);
-                            console.log('** CURRENT USER INFORMATION END **');
-                        })];
-                case 2:
-                    // get UserInfo, only access with authtoken
-                    _a.sent();
-                    // get headset ID
-                    return [4 /*yield*/, c.queryHeadsetId()
-                            .then(function (response) { return headsetId = response.toString(); })];
-                case 3:
-                    // get headset ID
-                    _a.sent();
-                    return [4 /*yield*/, c.createSession(authToken, headsetId)
-                            .then(function (r) { return sessionId = r.toString(); })];
-                case 4:
                     _a.sent();
                     return [2 /*return*/];
             }

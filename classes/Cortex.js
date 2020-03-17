@@ -76,7 +76,7 @@ var Cortex = /** @class */ (function () {
             socket.on('message', function (data) {
                 try {
                     if (JSON.parse(data)['id'] === REQUEST_ACCESS_ID) {
-                        resolve('requestAccess: Access has been granted');
+                        resolve(data);
                     }
                 }
                 catch (error) {
@@ -105,7 +105,6 @@ var Cortex = /** @class */ (function () {
                 try {
                     if (JSON.parse(data)['id'] === AUTHORIZE_ID) {
                         authToken = JSON.parse(data)['result']['cortexToken'];
-                        console.log('authorize: cortexToken created');
                         resolve(authToken);
                     }
                 }
@@ -119,7 +118,7 @@ var Cortex = /** @class */ (function () {
     // Check if user is logged in through Emotiv App
     Cortex.prototype.getUserInformation = function (authToken) {
         return __awaiter(this, void 0, void 0, function () {
-            var cortexToken, socket;
+            var socket;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: 
@@ -176,19 +175,8 @@ var Cortex = /** @class */ (function () {
                     if (JSON.parse(data)['id'] === QUERY_HEADSET_ID) {
                         // console.log(JSON.parse(data)['result'].length);
                         if (JSON.parse(data)['result'].length > 0) {
-                            var headsetId = JSON.parse(data)['result'][0];
-                            switch (headsetId['status']) {
-                                case 'discovered':
-                                    console.error('Cortex has detected the headset, but it is not connected. You cannot create a session for a discovered headset.');
-                                    break;
-                                case 'connecting':
-                                    console.log('Cortex is trying to connect to this headset. This can take a few seconds.');
-                                    break;
-                                case 'connected':
-                                    console.log('Cortex is connected to and receives data from this headset. You can call createSession and start working with this headset.');
-                                    break;
-                            }
-                            resolve(headsetId['id']);
+                            var headset = JSON.parse(data)['result'][0];
+                            resolve(headset['id']);
                         }
                         else {
                             console.error('No have any headset, please connect headset with your pc.');
@@ -423,17 +411,18 @@ var Cortex = /** @class */ (function () {
             },
             "id": SUB_REQUEST_ID
         };
-        console.log('sub eeg request: ', subRequest);
+        console.log('Subscribed Request: ', subRequest, '\n');
         socket.send(JSON.stringify(subRequest));
         socket.on('message', function (data) {
             try {
-                // if(JSON.parse(data)['id']==SUB_REQUEST_ID){
-                console.log('SUB REQUEST RESULT --------------------------------');
-                console.log(data);
-                console.log('\r\n');
-                // }
+                if (JSON.parse(data)['id'] == SUB_REQUEST_ID) {
+                    console.log('SUB REQUEST RESULT --------------------------------');
+                    console.log(data);
+                    console.log('\r\n');
+                }
             }
             catch (error) {
+                console.log(error);
             }
         });
     };
@@ -480,7 +469,8 @@ var Cortex = /** @class */ (function () {
             var headsetId, ctResult, authToken, sessionId;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.queryHeadsetId().then(function (headset) {
+                    case 0: return [4 /*yield*/, this.queryHeadsetId()
+                            .then(function (headset) {
                             headsetId = headset;
                         })];
                     case 1:
@@ -492,7 +482,6 @@ var Cortex = /** @class */ (function () {
                     case 2:
                         _a.sent();
                         this.ctResult = ctResult;
-                        console.log(ctResult);
                         return [4 /*yield*/, this.authorize().then(function (auth) {
                                 authToken = auth;
                             })];

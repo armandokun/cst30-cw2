@@ -55,7 +55,7 @@ export default class Cortex {
             socket.on('message', (data) => {
                 try {
                     if (JSON.parse(data)['id'] === REQUEST_ACCESS_ID) {
-                        resolve('requestAccess: Access has been granted')
+                        resolve(data);
                     }
                 } catch (error) {
                     console.log(error);
@@ -84,7 +84,6 @@ export default class Cortex {
                 try {
                     if (JSON.parse(data)['id'] === AUTHORIZE_ID) {
                         authToken = JSON.parse(data)['result']['cortexToken'];
-                        console.log('authorize: cortexToken created');
                         resolve(authToken);
                     }
                 } catch (error) {
@@ -97,7 +96,6 @@ export default class Cortex {
 
     // Check if user is logged in through Emotiv App
     async getUserInformation(authToken) {
-        let cortexToken: string;
         // Ask the user to approve this application
         await this.requestAccess().then(r => console.log(r));
 
@@ -156,21 +154,8 @@ export default class Cortex {
                         // console.log(JSON.parse(data)['result'].length);
                         if (JSON.parse(data)['result'].length > 0) {
 
-                            let headsetId = JSON.parse(data)['result'][0];
-
-                            switch (headsetId['status']) {
-                                case 'discovered':
-                                    console.error('Cortex has detected the headset, but it is not connected. You cannot create a session for a discovered headset.');
-                                    break;
-                                case 'connecting':
-                                    console.log('Cortex is trying to connect to this headset. This can take a few seconds.');
-                                    break;
-                                case 'connected':
-                                    console.log('Cortex is connected to and receives data from this headset. You can call createSession and start working with this headset.');
-                                    break;
-                            }
-
-                            resolve(headsetId['id']);
+                            let headset = JSON.parse(data)['result'][0];
+                            resolve(headset['id']);
 
                         } else {
                             console.error('No have any headset, please connect headset with your pc.');
@@ -280,7 +265,6 @@ export default class Cortex {
             })
         })
     }
-
 
     injectMarkerRequest(authToken, sessionId, label, value, port, time) {
         let socket = this.socket;
@@ -399,16 +383,17 @@ export default class Cortex {
             },
             "id": SUB_REQUEST_ID
         };
-        console.log('sub eeg request: ', subRequest);
+        console.log('Subscribed Request: ', subRequest, '\n');
         socket.send(JSON.stringify(subRequest));
         socket.on('message', (data) => {
             try {
-                // if(JSON.parse(data)['id']==SUB_REQUEST_ID){
-                console.log('SUB REQUEST RESULT --------------------------------');
-                console.log(data);
-                console.log('\r\n')
-                // }
+                if (JSON.parse(data)['id'] == SUB_REQUEST_ID) {
+                    console.log('SUB REQUEST RESULT --------------------------------');
+                    console.log(data);
+                    console.log('\r\n')
+                }
             } catch (error) {
+                console.log(error);
             }
         })
     }
@@ -453,9 +438,10 @@ export default class Cortex {
      */
     async querySessionInfo() {
         let headsetId: string;
-        await this.queryHeadsetId().then((headset: string) => {
-            headsetId = headset
-        });
+        await this.queryHeadsetId()
+            .then((headset: string) => {
+                headsetId = headset
+            });
         this.headsetId = headsetId;
 
         let ctResult: string;
@@ -463,7 +449,6 @@ export default class Cortex {
             ctResult = result;
         });
         this.ctResult = ctResult;
-        console.log(ctResult);
 
         let authToken: string;
         await this.authorize().then((auth: string) => {
@@ -498,6 +483,7 @@ export default class Cortex {
      */
     async checkGrantAccessAndQuerySessionInfo() {
         let requestAccessResult: string;
+
         await this.requestAccess().then((result: string) => {
             requestAccessResult = result
         });
@@ -527,6 +513,7 @@ export default class Cortex {
      * - subscribe for stream
      * - logout data stream to console or file
      */
+
     sub(streams) {
         this.socket.on('open', async () => {
             await this.checkGrantAccessAndQuerySessionInfo();
@@ -537,7 +524,6 @@ export default class Cortex {
             })
         })
     }
-
 
     setupProfile(authToken, headsetId, profileName, status) {
         const SETUP_PROFILE_ID = 7;

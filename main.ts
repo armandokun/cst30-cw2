@@ -20,33 +20,14 @@ let user = {
 };
 
 let c: Cortex = new Cortex(user, socketUrl);
-let headsetId: string;
-let authToken: string;
-let sessionId: string;
+// let headsetId: string;
+// let authToken: string;
+// let sessionId: string;
+let streams: string[];
 // Executes this piece of code when websockets server has been opened
-c.socket.on('open', async function () {
-    await init().then(r => console.log(r));
-});
+init().then(r => console.log(r));
 
 async function init() {
-
-    // get Authtoken
-    await c.authorize()
-        .then(response => authToken = response.toString());
-
-    // get UserInfo, only access with authtoken
-    await c.getUserInformation(authToken)
-        .then(r => {
-            console.log(r);
-            console.log('** CURRENT USER INFORMATION END **');
-        });
-
-    // get headset ID
-    await c.queryHeadsetId()
-        .then(response => headsetId = response.toString()
-        );
-
-    await c.createSession(authToken, headsetId)
-        .then(r => sessionId = r.toString()
-        );
+    streams = ['met'];
+    await c.sub(streams);
 }
