@@ -36,6 +36,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var WebSocket = require('ws');
+var aws = require('aws-sdk');
+aws.config.update({
+    region: "us-east-1",
+    endpoint: "https://dynamodb.us-east-1.amazonaws.com"
+});
+var documentClient = new aws.DynamoDB.DocumentClient();
 // Reads keys from .env file
 var dotenv = require('dotenv');
 dotenv.config();
@@ -411,14 +417,13 @@ var Cortex = /** @class */ (function () {
             },
             "id": SUB_REQUEST_ID
         };
-        console.log('Subscribed Request: ', subRequest, '\n');
         socket.send(JSON.stringify(subRequest));
         socket.on('message', function (data) {
+            // console.log(JSON.parse(data));
             try {
-                if (JSON.parse(data)['id'] == SUB_REQUEST_ID) {
+                if (JSON.parse(data)['id'] === SUB_REQUEST_ID) {
                     console.log('SUB REQUEST RESULT --------------------------------');
-                    console.log(data);
-                    console.log('\r\n');
+                    console.log('\n');
                 }
             }
             catch (error) {
@@ -563,8 +568,95 @@ var Cortex = /** @class */ (function () {
                         _a.sent();
                         this.subRequest(streams, this.authToken, this.sessionId);
                         this.socket.on('message', function (data) {
-                            // log stream data to file or console here
-                            console.log(data);
+                            // the data is divided into metrics and first socket result
+                            if (JSON.parse(data).id !== 6) {
+                                var allParams = [];
+                                data = JSON.parse(data);
+                                var params = {
+                                    TableName: "Headset_Metrics",
+                                    Item: {
+                                        PointTimeStamp: data.time,
+                                        Metric: 'engagement',
+                                        SessionID: data.sid,
+                                        Value: data.met[1]
+                                    }
+                                };
+                                allParams.push(params);
+                                params = {
+                                    TableName: "Headset_Metrics",
+                                    Item: {
+                                        PointTimeStamp: data.time,
+                                        Metric: 'excitement',
+                                        SessionID: data.sid,
+                                        Value: data.met[3]
+                                    }
+                                };
+                                allParams.push(params);
+                                params = {
+                                    TableName: "Headset_Metrics",
+                                    Item: {
+                                        PointTimeStamp: data.time,
+                                        Metric: 'long-term excitement',
+                                        SessionID: data.sid,
+                                        Value: data.met[4]
+                                    }
+                                };
+                                allParams.push(params);
+                                params = {
+                                    TableName: "Headset_Metrics",
+                                    Item: {
+                                        PointTimeStamp: data.time,
+                                        Metric: 'stress',
+                                        SessionID: data.sid,
+                                        Value: data.met[6]
+                                    }
+                                };
+                                allParams.push(params);
+                                params = {
+                                    TableName: "Headset_Metrics",
+                                    Item: {
+                                        PointTimeStamp: data.time,
+                                        Metric: 'relaxation',
+                                        SessionID: data.sid,
+                                        Value: data.met[8]
+                                    }
+                                };
+                                allParams.push(params);
+                                params = {
+                                    TableName: "Headset_Metrics",
+                                    Item: {
+                                        PointTimeStamp: data.time,
+                                        Metric: 'interest',
+                                        SessionID: data.sid,
+                                        Value: data.met[10]
+                                    }
+                                };
+                                allParams.push(params);
+                                params = {
+                                    TableName: "Headset_Metrics",
+                                    Item: {
+                                        PointTimeStamp: data.time,
+                                        Metric: 'focus',
+                                        SessionID: data.sid,
+                                        Value: data.met[12]
+                                    }
+                                };
+                                allParams.forEach(function (item) {
+                                    documentClient.put(item, function (err, data) {
+                                        if (err) {
+                                            console.error('Unable to add item: ', item);
+                                            console.error('Error JSON: ', JSON.stringify(err));
+                                        }
+                                        else {
+                                            // @ts-ignore
+                                            console.log("Data added to table: ", item.Item);
+                                        }
+                                    });
+                                });
+                            }
+                            else {
+                                console.log(data);
+                            }
                         });
                         return [2 /*return*/];
                 }

@@ -52,9 +52,6 @@ var user = {
     "debit": 1
 };
 var c = new Cortex_1.default(user, socketUrl);
-// let headsetId: string;
-// let authToken: string;
-// let sessionId: string;
 var streams;
 // Executes this piece of code when websockets server has been opened
 init().then(function (r) { return console.log(r); });

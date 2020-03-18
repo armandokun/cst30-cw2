@@ -9,11 +9,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^13.7.7"
+    "@types/node": "^13.9.1"
   },
   "dependencies": {
     "async-limiter": "^1.0.0",
-    "aws-sdk": "^2.635.0",
+    "aws-sdk": "^2.641.0",
     "dotenv": "^8.2.0",
     "ws": "^6.2.1"
   }

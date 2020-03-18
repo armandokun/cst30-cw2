@@ -1,8 +1,17 @@
 const WebSocket = require('ws');
 
+let aws = require('aws-sdk');
+aws.config.update({
+    region: "us-east-1",
+    endpoint: "https://dynamodb.us-east-1.amazonaws.com"
+});
+
+let documentClient = new aws.DynamoDB.DocumentClient();
+
 // Reads keys from .env file
 const dotenv = require('dotenv');
 dotenv.config();
+
 
 /**
  * This class handle:
@@ -383,14 +392,13 @@ export default class Cortex {
             },
             "id": SUB_REQUEST_ID
         };
-        console.log('Subscribed Request: ', subRequest, '\n');
         socket.send(JSON.stringify(subRequest));
-        socket.on('message', (data) => {
+        socket.on('message', (data: string) => {
+            // console.log(JSON.parse(data));
             try {
-                if (JSON.parse(data)['id'] == SUB_REQUEST_ID) {
+                if (JSON.parse(data)['id'] === SUB_REQUEST_ID) {
                     console.log('SUB REQUEST RESULT --------------------------------');
-                    console.log(data);
-                    console.log('\r\n')
+                    console.log('\n');
                 }
             } catch (error) {
                 console.log(error);
@@ -519,8 +527,108 @@ export default class Cortex {
             await this.checkGrantAccessAndQuerySessionInfo();
             this.subRequest(streams, this.authToken, this.sessionId);
             this.socket.on('message', (data) => {
-                // log stream data to file or console here
-                console.log(data);
+                // the data is divided into metrics and first socket result
+                if (JSON.parse(data).id !== 6) {
+                    let allParams: object[] = [];
+
+                    data = JSON.parse(data);
+
+                    let params: object = {
+                        TableName: "Headset_Metrics",
+                        Item: {
+                            PointTimeStamp: data.time,
+                            Metric: 'engagement',
+                            SessionID: data.sid,
+                            Value: data.met[1]
+                        }
+                    };
+                    allParams.push(params);
+
+                    params = {
+                        TableName: "Headset_Metrics",
+                        Item: {
+                            PointTimeStamp: data.time,
+                            Metric: 'excitement',
+                            SessionID: data.sid,
+                            Value: data.met[3]
+                        }
+                    };
+
+                    allParams.push(params);
+
+                    params = {
+                        TableName: "Headset_Metrics",
+                        Item: {
+                            PointTimeStamp: data.time,
+                            Metric: 'long-term excitement',
+                            SessionID: data.sid,
+                            Value: data.met[4]
+                        }
+                    };
+
+                    allParams.push(params);
+
+                    params = {
+                        TableName: "Headset_Metrics",
+                        Item: {
+                            PointTimeStamp: data.time,
+                            Metric: 'stress',
+                            SessionID: data.sid,
+                            Value: data.met[6]
+                        }
+                    };
+
+                    allParams.push(params);
+
+                    params = {
+                        TableName: "Headset_Metrics",
+                        Item: {
+                            PointTimeStamp: data.time,
+                            Metric: 'relaxation',
+                            SessionID: data.sid,
+                            Value: data.met[8]
+                        }
+                    };
+
+                    allParams.push(params);
+
+                    params = {
+                        TableName: "Headset_Metrics",
+                        Item: {
+                            PointTimeStamp: data.time,
+                            Metric: 'interest',
+                            SessionID: data.sid,
+                            Value: data.met[10]
+                        }
+                    };
+
+                    allParams.push(params);
+
+                    params = {
+                        TableName: "Headset_Metrics",
+                        Item: {
+                            PointTimeStamp: data.time,
+                            Metric: 'focus',
+                            SessionID: data.sid,
+                            Value: data.met[12]
+                        }
+                    };
+
+                    allParams.forEach(item => {
+                        documentClient.put(item, (err, data) => {
+                            if (err) {
+                                console.error('Unable to add item: ', item);
+                                console.error('Error JSON: ', JSON.stringify(err));
+                            } else {
+                                // @ts-ignore
+                                console.log("Data added to table: ", item.Item)
+                            }
+                        })
+                    });
+
+                } else {
+                    console.log(data);
+                }
             })
         })
     }

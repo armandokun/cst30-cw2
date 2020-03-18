@@ -11,8 +11,8 @@ console.log('*** EMOTIV\'S API CONFIG DETAILS *** ' +
     '\n*** THE END ***');
 
 // Credentials
-let socketUrl = 'wss://localhost:6868';
-let user = {
+let socketUrl: string = 'wss://localhost:6868';
+let user: object = {
     "license": "BASIC API",
     "clientId": process.env.CLIENT_ID,
     "clientSecret": process.env.CLIENT_SECRET,
@@ -20,9 +20,7 @@ let user = {
 };
 
 let c: Cortex = new Cortex(user, socketUrl);
-// let headsetId: string;
-// let authToken: string;
-// let sessionId: string;
+
 let streams: string[];
 // Executes this piece of code when websockets server has been opened
 init().then(r => console.log(r));
