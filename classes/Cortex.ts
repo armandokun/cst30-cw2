@@ -614,6 +614,8 @@ export default class Cortex {
                         }
                     };
 
+                    allParams.push(params);
+
                     allParams.forEach(item => {
                         documentClient.put(item, (err, data) => {
                             if (err) {

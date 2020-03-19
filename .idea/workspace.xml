@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ff27507-98c9-4c52-aefc-c226caea6a1b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/classes/DynamoDB.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database_function.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/twitter_search.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/Cortex.js" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cortex.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/Cortex.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cortex.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/Cortex.ts" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cortex.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/main.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/main.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
@@ -48,6 +48,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/classes" />
     </key>
   </component>
@@ -63,14 +64,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Node.js.main.js">
+  <component name="RunManager" selected="Node.js.twitter_search.js">
     <configuration name="Cortex.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/classes/Cortex.js" working-dir="$PROJECT_DIR$/classes">
       <method v="2" />
     </configuration>
     <configuration name="Cortex.ts" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/classes/Cortex.ts" working-dir="$PROJECT_DIR$">
-      <method v="2" />
-    </configuration>
-    <configuration name="credentials.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/credentials.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
     <configuration name="main.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/main.js" working-dir="$PROJECT_DIR$">
@@ -79,13 +77,16 @@
     <configuration name="testingDotenv.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/testingDotenv.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
+    <configuration name="twitter_search.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/twitter_search.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.twitter_search.js" />
         <item itemvalue="Node.js.main.js" />
         <item itemvalue="Node.js.Cortex.js" />
         <item itemvalue="Node.js.Cortex.ts" />
         <item itemvalue="Node.js.testingDotenv.js" />
-        <item itemvalue="Node.js.credentials.js" />
       </list>
     </recent_temporary>
   </component>
@@ -108,7 +109,7 @@
       <workItem from="1583779483975" duration="25182000" />
       <workItem from="1583951800183" duration="450000" />
       <workItem from="1584464868012" duration="9585000" />
-      <workItem from="1584549421614" duration="10943000" />
+      <workItem from="1584549421614" duration="14860000" />
     </task>
     <servers />
   </component>
@@ -118,6 +119,12 @@
       <list>
         <option value="$PROJECT_DIR$/main.js" />
         <option value="$PROJECT_DIR$/main.js.map" />
+        <option value="$PROJECT_DIR$/twitter_search.js.map" />
+        <option value="$PROJECT_DIR$/twitter_search.js" />
+        <option value="$PROJECT_DIR$/classes/DynamoDB.js.map" />
+        <option value="$PROJECT_DIR$/classes/DynamoDB.js" />
+        <option value="$PROJECT_DIR$/database_function.js.map" />
+        <option value="$PROJECT_DIR$/database_function.js" />
       </list>
     </option>
   </component>

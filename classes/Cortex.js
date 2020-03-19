@@ -641,6 +641,7 @@ var Cortex = /** @class */ (function () {
                                         Value: data.met[12]
                                     }
                                 };
+                                allParams.push(params);
                                 allParams.forEach(function (item) {
                                     documentClient.put(item, function (err, data) {
                                         if (err) {
