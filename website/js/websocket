@@ -1,0 +1,45 @@
+//Open connection
+const connection = new WebSocket(
+    "wss://z3fz92jyni.execute-api.us-east-1.amazonaws.com/dev_v1"
+);
+
+const metricsObject: object = {
+    action: "sendMessage",
+    data: "PM_Metrics"
+};
+
+let metrics: String;
+
+connection.onopen = function (event) {
+    console.log("Connected: " + JSON.stringify(event));
+
+    connection.send(JSON.stringify(metricsObject));
+    connection.onmessage = function(msg) {
+        metrics = msg.data;
+        console.log("Performance Metrics: " + metrics);
+    };
+
+    console.log("Message sent: " + JSON.stringify(metricsObject));
+};
+
+//Send message to server
+function sendMessage() {
+    var msgText = document.forms[0].inputString.value;
+
+    //Create message to be sent to server
+    var msgObject = {
+        action: "sendMessage",
+        data: msgText
+    };
+
+    //Send message object
+    connection.send(JSON.stringify(msgObject));
+
+    //Log result
+    console.log("Message sent: " + JSON.stringify(msgObject));
+}
+
+//Log errors
+connection.onerror = function (error) {
+    console.log("WebSocket Error: " + JSON.stringify(error));
+};

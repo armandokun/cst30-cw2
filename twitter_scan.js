@@ -50,24 +50,23 @@ var client = new Twitter({
     access_token_secret: process.env.ACCESS_TOKEN_SECRET
 });
 //Downloads and outputs tweet text
-function searchTweets(keyword) {
+function scanTimeline() {
     return __awaiter(this, void 0, void 0, function () {
-        var searchParams, result, error_1;
+        var queryParams, result, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    searchParams = {
-                        q: keyword,
-                        count: 10,
-                        lang: "en"
+                    queryParams = {
+                        count: 50,
+                        trim_user: true,
+                        exclude_replies: true,
                     };
-                    return [4 /*yield*/, client.get('search/tweets', searchParams)];
+                    return [4 /*yield*/, client.get('statuses/home_timeline', queryParams)];
                 case 1:
                     result = _a.sent();
-                    console.log(JSON.stringify(result));
                     //Output the result
-                    result.statuses.forEach(function (tweet) {
+                    result.forEach(function (tweet) {
                         console.log("Tweet id: " + tweet.id + ". Tweet text: " + tweet.text);
                     });
                     return [3 /*break*/, 3];
@@ -80,26 +79,26 @@ function searchTweets(keyword) {
         });
     });
 }
-//Call function to search for tweets with specified subject
-// searchTweets("WestWorld");
+//Call function to scan the user's timeline
+// scanTimeline();
 //Function downloads and outputs tweet text
-function storeTweets(keyword) {
+function storeTweets() {
     return __awaiter(this, void 0, void 0, function () {
-        var searchParams, twitterResult, promiseArray_1, databaseResult, error_2;
+        var queryParams, twitterResult, promiseArray_1, databaseResult, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    searchParams = {
-                        q: keyword,
-                        count: 10,
-                        lang: "en"
+                    queryParams = {
+                        count: 50,
+                        trim_user: true,
+                        exclude_replies: true,
                     };
-                    return [4 /*yield*/, client.get('search/tweets', searchParams)];
+                    return [4 /*yield*/, client.get('statuses/home_timeline', queryParams)];
                 case 1:
                     twitterResult = _a.sent();
                     promiseArray_1 = [];
-                    twitterResult.statuses.forEach(function (tweet) {
+                    twitterResult.forEach(function (tweet) {
                         console.log("Tweet id: " + tweet.id + ". Created At: " + tweet.created_at + ". Tweet text: " + tweet.text);
                         //Store save data promise in array
                         promiseArray_1.push(database_function_1.saveData(tweet.id, tweet.created_at, tweet.text));
@@ -118,6 +117,6 @@ function storeTweets(keyword) {
         });
     });
 }
-//Call function to search for tweets with specified subject
-storeTweets("WestWorld");
-//# sourceMappingURL=twitter_search.js.map
+//Call function to scan for tweets
+storeTweets();
+//# sourceMappingURL=twitter_scan.js.map

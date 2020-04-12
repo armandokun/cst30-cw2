@@ -53,7 +53,6 @@ var user = {
 };
 var c = new Cortex_1.default(user, socketUrl);
 var streams;
-// Executes this piece of code when websockets server has been opened
 init().then(function (r) { return console.log(r); });
 function init() {
     return __awaiter(this, void 0, void 0, function () {

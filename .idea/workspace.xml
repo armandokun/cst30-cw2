@@ -2,15 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ff27507-98c9-4c52-aefc-c226caea6a1b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/classes/DynamoDB.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database_function.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/twitter_search.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/js/websocket" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/styles/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Cortex.js" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cortex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Cortex.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cortex.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Cortex.ts" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cortex.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database_function.js" beforeDir="false" afterPath="$PROJECT_DIR$/database_function.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database_function.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/database_function.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database_function.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database_function.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/main.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/twitter_search.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/twitter_search.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/twitter_search.ts" beforeDir="false" afterPath="$PROJECT_DIR$/twitter_scan.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,7 +68,10 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Node.js.twitter_search.js">
+  <component name="RunManager" selected="JavaScript Debug.index.html">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cst30-cw2/website/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="Cortex.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/classes/Cortex.js" working-dir="$PROJECT_DIR$/classes">
       <method v="2" />
     </configuration>
@@ -74,19 +81,16 @@
     <configuration name="main.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/main.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
-    <configuration name="testingDotenv.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/testingDotenv.js" working-dir="$PROJECT_DIR$">
-      <method v="2" />
-    </configuration>
-    <configuration name="twitter_search.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/twitter_search.js" working-dir="$PROJECT_DIR$">
+    <configuration name="twitter_scan.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/twitter_scan.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Node.js.twitter_search.js" />
+        <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="Node.js.twitter_scan.js" />
         <item itemvalue="Node.js.main.js" />
         <item itemvalue="Node.js.Cortex.js" />
         <item itemvalue="Node.js.Cortex.ts" />
-        <item itemvalue="Node.js.testingDotenv.js" />
       </list>
     </recent_temporary>
   </component>
@@ -109,7 +113,14 @@
       <workItem from="1583779483975" duration="25182000" />
       <workItem from="1583951800183" duration="450000" />
       <workItem from="1584464868012" duration="9585000" />
-      <workItem from="1584549421614" duration="14860000" />
+      <workItem from="1584549421614" duration="15803000" />
+      <workItem from="1584718813464" duration="1012000" />
+      <workItem from="1585167726380" duration="1552000" />
+      <workItem from="1585172994211" duration="3476000" />
+      <workItem from="1586616759880" duration="420000" />
+      <workItem from="1586624277492" duration="1197000" />
+      <workItem from="1586635615101" duration="682000" />
+      <workItem from="1586685574532" duration="1810000" />
     </task>
     <servers />
   </component>
@@ -127,6 +138,9 @@
         <option value="$PROJECT_DIR$/database_function.js" />
       </list>
     </option>
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.env" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

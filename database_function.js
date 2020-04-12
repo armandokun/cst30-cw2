@@ -12,7 +12,7 @@ var documentClient = new AWS.DynamoDB.DocumentClient();
 function saveData(tweetId, tweetDate, tweetText) {
     //Table name and data for table
     var params = {
-        TableName: "Twitter_Data",
+        TableName: "Twitter",
         Item: {
             id: tweetId,
             created_at: tweetDate,

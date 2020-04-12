@@ -20,9 +20,8 @@ let user: object = {
 };
 
 let c: Cortex = new Cortex(user, socketUrl);
-
 let streams: string[];
-// Executes this piece of code when websockets server has been opened
+
 init().then(r => console.log(r));
 
 async function init() {

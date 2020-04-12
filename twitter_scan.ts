@@ -18,21 +18,20 @@ let client = new Twitter({
 });
 
 //Downloads and outputs tweet text
-async function searchTweets(keyword: string) {
+async function scanTimeline() {
     try {
-        //Set up parameters for the search
-        let searchParams = {
-            q: keyword,
-            count: 10,
-            lang: "en"
+        //Set up parameters for the scan
+        let queryParams = {
+            count: 50,
+            trim_user: true,
+            exclude_replies: true,
         };
 
-        //Wait for search to execute asynchronously
-        let result = await client.get('search/tweets', searchParams);
-        console.log(JSON.stringify(result));
+        //Wait for scan to execute asynchronously
+        let result = await client.get('statuses/home_timeline', queryParams);
 
         //Output the result
-        result.statuses.forEach(tweet => {
+        result.forEach(tweet => {
             console.log("Tweet id: " + tweet.id + ". Tweet text: " + tweet.text);
         });
     } catch (error) {
@@ -40,25 +39,25 @@ async function searchTweets(keyword: string) {
     }
 }
 
-//Call function to search for tweets with specified subject
-// searchTweets("WestWorld");
+//Call function to scan the user's timeline
+// scanTimeline();
 
 //Function downloads and outputs tweet text
-async function storeTweets(keyword: string) {
+async function storeTweets() {
     try {
-        //Set up parameters for the search
-        let searchParams = {
-            q: keyword,
-            count: 10,
-            lang: "en"
+        //Set up parameters for the scan
+        let queryParams = {
+            count: 50,
+            trim_user: true,
+            exclude_replies: true,
         };
 
-        //Wait for search to execute asynchronously
-        let twitterResult = await client.get('search/tweets', searchParams);
+        //Wait for scan to execute asynchronously
+        let twitterResult = await client.get('statuses/home_timeline', queryParams);
 
         //Output the result
         let promiseArray: Array<Promise<string>> = [];
-        twitterResult.statuses.forEach((tweet) => {
+        twitterResult.forEach((tweet) => {
             console.log("Tweet id: " + tweet.id + ". Created At: " + tweet.created_at + ". Tweet text: " + tweet.text);
 
             //Store save data promise in array
@@ -73,5 +72,5 @@ async function storeTweets(keyword: string) {
     }
 }
 
-//Call function to search for tweets with specified subject
-storeTweets("WestWorld");
+//Call function to scan for tweets
+storeTweets();
