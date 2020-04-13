@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
+
+    <!-- Include Plotly JavaScript library -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <script src="js/websocket.js"></script>
+    <script src="js/currency_data.js"></script>
     <title>CST3130 - Coursework 2</title>
 </head>
 <body>
@@ -19,7 +25,62 @@
 <h1>Messages from Server</h1>
 <p
         style="border-style: solid; width: 500px; border-width: 1px;"
-        id="messages"
-></p>
+        id="messages">
+</p>
+
+<!-- Create DIVs to hold the charts -->
+<div id="engagementDiv" style="width:800px;height:400px;"></div>
 </body>
+<script>
+    //Plots randomly generate crypto data
+    function plotData() {
+        //Get test data
+        let currencyData = getCurrencyData();
+
+        //Work through the four currencies
+        currencyData.forEach(currency => {
+            //Specify how chart should be drawn
+            let trace = {
+                x: currency.x,
+                y: currency.y,
+                mode: 'line',
+                name: currency.name,
+                marker: {
+                    color: 'rgb(219, 64, 82)',
+                    size: 12
+                }
+            };
+
+            //Get reference to Div where chart will be drawn
+            let chartDiv = document.getElementById(currency.name + "Div");
+
+            //Upper case the start of the currency name and create title of chart
+            let chartTitle = currency.name.charAt(0).toUpperCase() + currency.name.slice(1);
+
+            //Set up graph
+            let layout = {
+                title: chartTitle,
+                xaxis: {
+                    title: 'Time'
+                },
+                yaxis: {
+                    title: 'Price'
+                }
+            };
+
+            //Data for graph is an array of lines for graph
+            let data = [trace];
+
+            //Plot data
+            Plotly.newPlot(chartDiv, data, layout);
+        });
+    }
+
+    //Plot data when window first loads
+    window.onload = plotData;
+
+    //Replot data every 1000 ms.
+    setInterval(plotData, 10000);
+</script>
 </html>
+

@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ff27507-98c9-4c52-aefc-c226caea6a1b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/website/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/js/websocket" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/styles/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/cst30-cw2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cst30-cw2.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database_function.js" beforeDir="false" afterPath="$PROJECT_DIR$/database_function.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database_function.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/database_function.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database_function.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database_function.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/main.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twitter_search.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/twitter_search.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/twitter_search.ts" beforeDir="false" afterPath="$PROJECT_DIR$/twitter_scan.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/js/currency_data.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/js/currency_data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/js/websocket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/website/js/websocket.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,9 +30,13 @@
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectId" id="1Yl60lfHe9viKxPi4GN6YYbGplx" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -52,6 +48,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/js" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/classes" />
     </key>
@@ -120,7 +117,8 @@
       <workItem from="1586616759880" duration="420000" />
       <workItem from="1586624277492" duration="1197000" />
       <workItem from="1586635615101" duration="682000" />
-      <workItem from="1586685574532" duration="1810000" />
+      <workItem from="1586685574532" duration="8178000" />
+      <workItem from="1586796565418" duration="2286000" />
     </task>
     <servers />
   </component>
@@ -128,14 +126,14 @@
     <option name="version" value="1" />
     <option name="exactExcludedFiles">
       <list>
-        <option value="$PROJECT_DIR$/main.js" />
-        <option value="$PROJECT_DIR$/main.js.map" />
-        <option value="$PROJECT_DIR$/twitter_search.js.map" />
-        <option value="$PROJECT_DIR$/twitter_search.js" />
-        <option value="$PROJECT_DIR$/classes/DynamoDB.js.map" />
-        <option value="$PROJECT_DIR$/classes/DynamoDB.js" />
         <option value="$PROJECT_DIR$/database_function.js.map" />
         <option value="$PROJECT_DIR$/database_function.js" />
+        <option value="$PROJECT_DIR$/classes/DynamoDB.js.map" />
+        <option value="$PROJECT_DIR$/classes/DynamoDB.js" />
+        <option value="$PROJECT_DIR$/main.js" />
+        <option value="$PROJECT_DIR$/main.js.map" />
+        <option value="$PROJECT_DIR$/website/js/websocket.js" />
+        <option value="$PROJECT_DIR$/website/js/websocket.js.map" />
       </list>
     </option>
   </component>
@@ -154,5 +152,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

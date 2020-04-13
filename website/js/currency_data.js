@@ -15,10 +15,12 @@ function getCurrencyData(){
 
     //Names of currencies, their average prices and arrays to store the generated x and y values
     let currencyData = [
-        {name: "bitcoin", averagePrice: 50, x: [], y: []},
-        {name: "ethereum", averagePrice: 50, x: [], y: []},
-        {name: "litecoin", averagePrice: 50, x: [], y: []},
-        {name: "tron", averagePrice: 50, x: [], y: []}
+        {name: "engagement", averagePrice: 50, x: [], y: []},
+        // {name: "excitement", averagePrice: 50, x: [], y: []},
+        // {name: "interest", averagePrice: 50, x: [], y: []},
+        // {name: "long-term excitement", averagePrice: 50, x: [], y: []},
+        // {name: "relaxation", averagePrice: 50, x: [], y: []},
+        // {name: "stress", averagePrice: 50, x: [], y: []}
     ];
 
     for (let ts = 0; ts < numTimeIntervals * timeInterval; ts += timeInterval) {
@@ -40,7 +42,6 @@ function getCurrencyData(){
     });
 
     //Log final result and return
-    //console.log(currencyData);
+    // console.log(currencyData);
     return currencyData;
 }
-

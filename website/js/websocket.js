@@ -1,47 +1,33 @@
 //Open connection
-const connection = new WebSocket(
-    "wss://z3fz92jyni.execute-api.us-east-1.amazonaws.com/dev_v1"
-);
-
-const metricsObject: object = {
+var connection = new WebSocket("wss://z3fz92jyni.execute-api.us-east-1.amazonaws.com/dev_v1");
+var metricsObject = {
     action: "sendMessage",
     data: "PM_Metrics"
 };
-
-let metrics: object[];
-
+var metrics;
 connection.onopen = function (event) {
     console.log("Connected: " + JSON.stringify(event));
-
     /*
     Downloading Data
      */
-
     // Performance Metrics
     connection.send(JSON.stringify(metricsObject));
-
     connection.onmessage = function (msg) {
         metrics = JSON.parse(msg.data);
         console.log(metrics);
     };
-
     console.log("Message sent: " + JSON.stringify(metricsObject));
-
     // Latest Performance Metrics
-    let latestMetrics: object[];
-
-    const latestMetricsObject: object = {
+    var latestMetrics;
+    var latestMetricsObject = {
         action: "getLatestData",
         data: "pm_metrics"
     };
-
     connection.send(JSON.stringify(latestMetricsObject));
-
     connection.onmessage = function (msg) {
         latestMetrics = JSON.parse(msg.data);
         console.log(latestMetrics);
-    }
-
+    };
     // Twitter Sentimental Analysis Results
     // const sentimentalObject: object = {
     //     action: "sendMessage",
@@ -77,27 +63,22 @@ connection.onopen = function (event) {
     //         return sentimentArray;
     //     }
     //}
-
 };
-
 //Send message to server
 function sendMessage() {
     var msgText = document.forms[0].inputString.value;
-
     //Create message to be sent to server
     var msgObject = {
         action: "sendMessage",
         data: msgText
     };
-
     //Send message object
     connection.send(JSON.stringify(msgObject));
-
     //Log result
     console.log("Message sent: " + JSON.stringify(msgObject));
 }
-
 //Log errors
 connection.onerror = function (error) {
     console.log("WebSocket Error: " + JSON.stringify(error));
 };
+//# sourceMappingURL=websocket.js.map
