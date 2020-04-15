@@ -43,7 +43,7 @@ async function scanTimeline() {
 // scanTimeline();
 
 //Function downloads and outputs tweet text
-async function storeTweets() {
+export async function storeTweets() {
     try {
         //Set up parameters for the scan
         let queryParams = {
@@ -72,5 +72,3 @@ async function storeTweets() {
     }
 }
 
-//Call function to scan for tweets
-storeTweets();

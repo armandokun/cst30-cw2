@@ -1,4 +1,5 @@
 import Cortex from './classes/Cortex';
+import {storeTweets} from './twitter_scan';
 
 // Reads keys from .env file
 const dotenv = require('dotenv');
@@ -19,6 +20,7 @@ let user: object = {
     "debit": 1
 };
 
+// main
 let c: Cortex = new Cortex(user, socketUrl);
 let streams: string[];
 
@@ -28,3 +30,6 @@ async function init() {
     streams = ['met'];
     await c.sub(streams);
 }
+
+// Scan and store tweets into DB
+storeTweets();

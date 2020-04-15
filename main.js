@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var Cortex_1 = require("./classes/Cortex");
+var twitter_scan_1 = require("./twitter_scan");
 // Reads keys from .env file
 var dotenv = require('dotenv');
 dotenv.config();
@@ -51,6 +52,7 @@ var user = {
     "clientSecret": process.env.CLIENT_SECRET,
     "debit": 1
 };
+// main
 var c = new Cortex_1.default(user, socketUrl);
 var streams;
 init().then(function (r) { return console.log(r); });
@@ -68,4 +70,6 @@ function init() {
         });
     });
 }
+// Scan and store tweets into DB
+twitter_scan_1.storeTweets();
 //# sourceMappingURL=main.js.map

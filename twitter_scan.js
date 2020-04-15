@@ -117,6 +117,5 @@ function storeTweets() {
         });
     });
 }
-//Call function to scan for tweets
-storeTweets();
+exports.storeTweets = storeTweets;
 //# sourceMappingURL=twitter_scan.js.map

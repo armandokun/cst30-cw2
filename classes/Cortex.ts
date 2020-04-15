@@ -560,18 +560,6 @@ export default class Cortex {
                         TableName: "Headset_Metrics",
                         Item: {
                             PointTimeStamp: data.time,
-                            Metric: 'long-term excitement',
-                            SessionID: data.sid,
-                            Value: data.met[4]
-                        }
-                    };
-
-                    allParams.push(params);
-
-                    params = {
-                        TableName: "Headset_Metrics",
-                        Item: {
-                            PointTimeStamp: data.time,
                             Metric: 'stress',
                             SessionID: data.sid,
                             Value: data.met[6]

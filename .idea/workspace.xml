@@ -2,10 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ff27507-98c9-4c52-aefc-c226caea6a1b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/cst30-cw2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cst30-cw2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/js/currency_data.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Cortex.js" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cortex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Cortex.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cortex.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Cortex.ts" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cortex.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/DynamoDB.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/DynamoDB.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/DynamoDB.ts" beforeDir="false" afterPath="$PROJECT_DIR$/website/js/test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/main.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/twitter_scan.js" beforeDir="false" afterPath="$PROJECT_DIR$/twitter_scan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/twitter_scan.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/twitter_scan.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/twitter_scan.ts" beforeDir="false" afterPath="$PROJECT_DIR$/twitter_scan.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/js/currency_data.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/js/currency_data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/js/currency_data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/js/websocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/js/websocket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/js/websocket.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/website/js/websocket.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/js/websocket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/website/js/websocket.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -65,7 +79,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html">
+  <component name="RunManager" selected="Node.js.main.js">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cst30-cw2/website/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -83,9 +97,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.main.js" />
         <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="Node.js.twitter_scan.js" />
-        <item itemvalue="Node.js.main.js" />
         <item itemvalue="Node.js.Cortex.js" />
         <item itemvalue="Node.js.Cortex.ts" />
       </list>
@@ -118,7 +132,9 @@
       <workItem from="1586624277492" duration="1197000" />
       <workItem from="1586635615101" duration="682000" />
       <workItem from="1586685574532" duration="8178000" />
-      <workItem from="1586796565418" duration="2286000" />
+      <workItem from="1586796565418" duration="3303000" />
+      <workItem from="1586886366085" duration="5282000" />
+      <workItem from="1586902667496" duration="10959000" />
     </task>
     <servers />
   </component>
@@ -134,6 +150,12 @@
         <option value="$PROJECT_DIR$/main.js.map" />
         <option value="$PROJECT_DIR$/website/js/websocket.js" />
         <option value="$PROJECT_DIR$/website/js/websocket.js.map" />
+        <option value="$PROJECT_DIR$/website/js/test.js.map" />
+        <option value="$PROJECT_DIR$/website/js/test.js" />
+        <option value="$PROJECT_DIR$/website/js/currency_data.js" />
+        <option value="$PROJECT_DIR$/website/js/currency_data.js.map" />
+        <option value="$PROJECT_DIR$/website/js/plotly_charts.js.map" />
+        <option value="$PROJECT_DIR$/website/js/plotly_charts.js" />
       </list>
     </option>
   </component>

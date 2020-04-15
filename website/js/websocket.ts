@@ -1,3 +1,4 @@
+
 //Open connection
 const connection = new WebSocket(
     "wss://z3fz92jyni.execute-api.us-east-1.amazonaws.com/dev_v1"
@@ -17,15 +18,6 @@ connection.onopen = function (event) {
     Downloading Data
      */
 
-    // Performance Metrics
-    connection.send(JSON.stringify(metricsObject));
-
-    connection.onmessage = function (msg) {
-        metrics = JSON.parse(msg.data);
-        console.log(metrics);
-    };
-
-    console.log("Message sent: " + JSON.stringify(metricsObject));
 
     // Latest Performance Metrics
     let latestMetrics: object[];
@@ -36,48 +28,69 @@ connection.onopen = function (event) {
     };
 
     connection.send(JSON.stringify(latestMetricsObject));
+    console.log("Message sent: " + JSON.stringify(latestMetricsObject));
 
     connection.onmessage = function (msg) {
         latestMetrics = JSON.parse(msg.data);
         console.log(latestMetrics);
-    }
 
-    // Twitter Sentimental Analysis Results
-    // const sentimentalObject: object = {
-    //     action: "sendMessage",
-    //     data: "Sentiment_Analysis"
+        /*
+        Wrapping Up Data for Plotly
+        */
+
+        let plotlyData = getMetricsData(latestMetrics);
+        console.log(plotlyData);
+
+        document.getElementById("messages").innerText = JSON.stringify(plotlyData);
+
+
+        // Twitter Sentimental Analysis Results
+        // const sentimentalObject: object = {
+        //     action: "sendMessage",
+        //     data: "Sentiment_Analysis"
+        // };
+        //
+        // connection.send(JSON.stringify(sentimentalObject));
+        // connection.onmessage = function (sentiment) {
+        //
+        //     //Generates the specified number of random sentiment data
+        //     function getDemoSentimentData(numItems){
+        //         let sentimentArray = [];
+        //
+        //         for(let i=0; i<numItems; i++){
+        //             //Randomly generate sentiment
+        //             let positiveSentiment = Math.random();
+        //             let negativeSentiment = 1-positiveSentiment;
+        //
+        //             //Add sentiment object to array
+        //             let sentimentObject = {
+        //                 Sentiment: "UNDEFINED",
+        //                 SentimentScore: {
+        //                     Positive: positiveSentiment,
+        //                     Negative: negativeSentiment,
+        //                     Neutral: 0,
+        //                     Mixed: 0
+        //                 }
+        //             }
+        //             sentimentArray.push(sentimentObject);
+        //         }
+        //
+        //         //Return random sentiment data
+        //         return sentimentArray;
+        //     }
+        //}
+
+    };
+
+    // Performance Metrics
+    // connection.send(JSON.stringify(metricsObject));
+    //
+    // connection.onmessage = function (msg) {
+    //     metrics = JSON.parse(msg.data);
+    //     console.log(metrics);
     // };
     //
-    // connection.send(JSON.stringify(sentimentalObject));
-    // connection.onmessage = function (sentiment) {
-    //
-    //     //Generates the specified number of random sentiment data
-    //     function getDemoSentimentData(numItems){
-    //         let sentimentArray = [];
-    //
-    //         for(let i=0; i<numItems; i++){
-    //             //Randomly generate sentiment
-    //             let positiveSentiment = Math.random();
-    //             let negativeSentiment = 1-positiveSentiment;
-    //
-    //             //Add sentiment object to array
-    //             let sentimentObject = {
-    //                 Sentiment: "UNDEFINED",
-    //                 SentimentScore: {
-    //                     Positive: positiveSentiment,
-    //                     Negative: negativeSentiment,
-    //                     Neutral: 0,
-    //                     Mixed: 0
-    //                 }
-    //             }
-    //             sentimentArray.push(sentimentObject);
-    //         }
-    //
-    //         //Return random sentiment data
-    //         return sentimentArray;
-    //     }
-    //}
-
+    // console.log("Message sent: " + JSON.stringify(metricsObject));
 };
 
 //Send message to server
@@ -101,3 +114,25 @@ function sendMessage() {
 connection.onerror = function (error) {
     console.log("WebSocket Error: " + JSON.stringify(error));
 };
+
+//Add dummy data for four currencies
+function getMetricsData(metrics) {
+
+    let metricsData: object[] = [];
+
+    //Names of currencies, their average prices and arrays to store the generated x and y values
+    metrics.forEach(metric => {
+        let dateStamp = parseInt(metric.PointTimeStamp.N);
+        let myDate = new Date( dateStamp * 1000);
+        myDate.toDateString();
+
+        metricsData.push({
+            name: metric.Metric.S,
+            x: [myDate],
+            y: [parseFloat(metric.Value.N) * 100]
+        });
+    });
+
+    // Return final result
+    return metricsData;
+}
