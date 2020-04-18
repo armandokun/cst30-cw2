@@ -2,22 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ff27507-98c9-4c52-aefc-c226caea6a1b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/website/js/currency_data.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Cortex.js" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cortex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Cortex.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cortex.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Cortex.ts" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cortex.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/DynamoDB.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/DynamoDB.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/DynamoDB.ts" beforeDir="false" afterPath="$PROJECT_DIR$/website/js/test.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/main.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twitter_scan.js" beforeDir="false" afterPath="$PROJECT_DIR$/twitter_scan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twitter_scan.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/twitter_scan.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twitter_scan.ts" beforeDir="false" afterPath="$PROJECT_DIR$/twitter_scan.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/js/currency_data.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/website/js/websocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/js/websocket.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/js/websocket.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/website/js/websocket.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/js/websocket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/website/js/websocket.ts" afterDir="false" />
@@ -134,7 +123,8 @@
       <workItem from="1586685574532" duration="8178000" />
       <workItem from="1586796565418" duration="3303000" />
       <workItem from="1586886366085" duration="5282000" />
-      <workItem from="1586902667496" duration="10959000" />
+      <workItem from="1586902667496" duration="11487000" />
+      <workItem from="1587155264604" duration="16745000" />
     </task>
     <servers />
   </component>

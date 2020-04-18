@@ -32,4 +32,4 @@ async function init() {
 }
 
 // Scan and store tweets into DB
-storeTweets();
+// storeTweets();

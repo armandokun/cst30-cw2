@@ -25,7 +25,6 @@ connection.onopen = function (event) {
         Wrapping Up Data for Plotly
         */
         var plotlyData = getMetricsData(latestMetrics);
-        console.log(plotlyData);
         document.getElementById("messages").innerText = JSON.stringify(plotlyData);
         // Twitter Sentimental Analysis Results
         // const sentimentalObject: object = {
@@ -63,15 +62,6 @@ connection.onopen = function (event) {
         //     }
         //}
     };
-    // Performance Metrics
-    // connection.send(JSON.stringify(metricsObject));
-    //
-    // connection.onmessage = function (msg) {
-    //     metrics = JSON.parse(msg.data);
-    //     console.log(metrics);
-    // };
-    //
-    // console.log("Message sent: " + JSON.stringify(metricsObject));
 };
 //Send message to server
 function sendMessage() {

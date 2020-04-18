@@ -36,7 +36,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var Cortex_1 = require("./classes/Cortex");
-var twitter_scan_1 = require("./twitter_scan");
 // Reads keys from .env file
 var dotenv = require('dotenv');
 dotenv.config();
@@ -71,5 +70,5 @@ function init() {
     });
 }
 // Scan and store tweets into DB
-twitter_scan_1.storeTweets();
+// storeTweets();
 //# sourceMappingURL=main.js.map

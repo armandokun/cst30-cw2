@@ -39,46 +39,56 @@
 </body>
 <script>
 
+
     // Plots randomly generate crypto data
     function plotData() {
-        let plotlyData = JSON.parse(document.getElementById("messages").innerText);
-        //Work through the four currencies
-        plotlyData.forEach(metric => {
-            //Specify how chart should be drawn
-            let trace = {
-                x: metric.x,
-                y: metric.y,
-                mode: 'line',
-                name: metric.name,
-                marker: {
-                    color: 'rgb(219, 64, 82)',
-                    size: 12
+        let dataConsole = document.getElementById("messages").innerText;
+        let plotlyDivContent = document.getElementById("engagementDiv").innerHTML;
+        let plotlyData = JSON.parse(dataConsole);
+
+        // if there are no diagrams drawn
+        if (dataConsole !== "") {
+            //Work through the available metrics
+            plotlyData.forEach(metric => {
+                //Specify how chart should be drawn
+                let trace = {
+                    x: metric.x,
+                    y: metric.y,
+                    mode: 'line',
+                    name: metric.name,
+                    marker: {
+                        color: 'rgb(219, 64, 82)',
+                        size: 12
+                    }
+                };
+
+                //Upper case the start of the currency name and create title of chart
+                let chartTitle = metric.name.charAt(0).toUpperCase() + metric.name.slice(1);
+
+                // Chart location
+                let charLocation = metric.name + "Div";
+
+                //Set up graph
+                let layout = {
+                    title: chartTitle,
+                    xaxis: {
+                        title: 'Time'
+                    },
+                    yaxis: {
+                        title: 'Value'
+                    }
+                };
+
+                if (plotlyDivContent === "") {
+                    //Plot data
+                    Plotly.newPlot(charLocation, [trace], layout);
+                } else {
+                    // Add data
+                    Plotly.extendTraces(charLocation, {x: [metric.x], y: [metric.y]}, [0]);
                 }
-            };
+            });
+        }
 
-            //Get reference to Div where chart will be drawn
-            let chartDiv = document.getElementById(metric.name + "Div");
-
-            //Upper case the start of the currency name and create title of chart
-            let chartTitle = metric.name.charAt(0).toUpperCase() + metric.name.slice(1);
-
-            //Set up graph
-            let layout = {
-                title: chartTitle,
-                xaxis: {
-                    title: 'Time'
-                },
-                yaxis: {
-                    title: 'Value'
-                }
-            };
-
-            //Data for graph is an array of lines for graph
-            let data = [trace];
-
-            //Plot data
-            Plotly.newPlot(chartDiv, data, layout);
-        });
     }
 
     // Init function every 10sec
