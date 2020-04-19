@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <!-- A fix to import/export statements -->
     <script>var exports = {};</script>
 
     <!-- Include Plotly JavaScript library -->
@@ -11,20 +12,10 @@
 </head>
 <body>
 <h1>Performance Metrics</h1>
-<h3>Device: <b>Emotiv EPOC+</b></h3>
-<h3>Contact Quality: <span class="statusGreen">100%</span></h3>
-<h3>Battery: <span class="statusGreen">100%</span></h3>
-<form>
-    <label>
-        <input type="text" name="inputString" placeholder="Enter command"/>
-    </label>
-    <button type="button" onclick="sendMessage()">Submit</button>
-</form>
+<h2>Console</h2>
 
-<h1>Data Received</h1>
 <p
-        onchange="plotData()"
-        style="border-style: solid; width: 500px; border-width: 1px;"
+        style="border-style: solid; width: 500px; border-width: 1px; height: 150px; font-family: monospace;"
         id="messages">
 </p>
 
@@ -39,54 +30,57 @@
 </body>
 <script>
 
-
-    // Plots randomly generate crypto data
+    // Draw Diagrams
     function plotData() {
         let dataConsole = document.getElementById("messages").innerText;
         let plotlyDivContent = document.getElementById("engagementDiv").innerHTML;
-        let plotlyData = JSON.parse(dataConsole);
 
         // if there are no diagrams drawn
         if (dataConsole !== "") {
-            //Work through the available metrics
-            plotlyData.forEach(metric => {
-                //Specify how chart should be drawn
-                let trace = {
-                    x: metric.x,
-                    y: metric.y,
-                    mode: 'line',
-                    name: metric.name,
-                    marker: {
-                        color: 'rgb(219, 64, 82)',
-                        size: 12
+            try {
+                let plotlyData = JSON.parse(dataConsole);
+                //Work through the available metrics
+                plotlyData.forEach(metric => {
+                    //Specify how chart should be drawn
+                    let trace = {
+                        x: metric.x,
+                        y: metric.y,
+                        mode: 'line',
+                        name: metric.name,
+                        marker: {
+                            color: 'rgb(219, 64, 82)',
+                            size: 12
+                        }
+                    };
+
+                    //Upper case the start of the currency name and create title of chart
+                    let chartTitle = metric.name.charAt(0).toUpperCase() + metric.name.slice(1);
+
+                    // Chart location
+                    let charLocation = metric.name + "Div";
+
+                    //Set up graph
+                    let layout = {
+                        title: chartTitle,
+                        xaxis: {
+                            title: 'Time'
+                        },
+                        yaxis: {
+                            title: 'Value'
+                        }
+                    };
+
+                    if (plotlyDivContent === "") {
+                        //Plot data
+                        Plotly.newPlot(charLocation, [trace], layout);
+                    } else {
+                        // Add data
+                        Plotly.extendTraces(charLocation, {x: [metric.x], y: [metric.y]}, [0]);
                     }
-                };
-
-                //Upper case the start of the currency name and create title of chart
-                let chartTitle = metric.name.charAt(0).toUpperCase() + metric.name.slice(1);
-
-                // Chart location
-                let charLocation = metric.name + "Div";
-
-                //Set up graph
-                let layout = {
-                    title: chartTitle,
-                    xaxis: {
-                        title: 'Time'
-                    },
-                    yaxis: {
-                        title: 'Value'
-                    }
-                };
-
-                if (plotlyDivContent === "") {
-                    //Plot data
-                    Plotly.newPlot(charLocation, [trace], layout);
-                } else {
-                    // Add data
-                    Plotly.extendTraces(charLocation, {x: [metric.x], y: [metric.y]}, [0]);
-                }
-            });
+                });
+            } catch (e) {
+                console.log("Headset is not connected");
+            }
         }
 
     }
