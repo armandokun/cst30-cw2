@@ -3,17 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="6ff27507-98c9-4c52-aefc-c226caea6a1b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Cortex.js" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cortex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Cortex.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cortex.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/main.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twitter_scan.js" beforeDir="false" afterPath="$PROJECT_DIR$/twitter_scan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twitter_scan.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/twitter_scan.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/js/websocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/js/websocket.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/js/websocket.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/website/js/websocket.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/js/websocket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/website/js/websocket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/website/styles/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +43,8 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -63,7 +62,7 @@
       <recent name="$PROJECT_DIR$/classes" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html">
+  <component name="RunManager" selected="Node.js.main.js">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cst30-cw2/website/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -81,8 +80,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="Node.js.main.js" />
+        <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="Node.js.twitter_scan.js" />
         <item itemvalue="Node.js.Cortex.js" />
         <item itemvalue="Node.js.Cortex.ts" />
@@ -123,7 +122,13 @@
       <workItem from="1587243713788" duration="3486000" />
       <workItem from="1587260807770" duration="28000" />
       <workItem from="1587260856943" duration="6202000" />
-      <workItem from="1587324822644" duration="3809000" />
+      <workItem from="1587324822644" duration="3876000" />
+      <workItem from="1587339302751" duration="8530000" />
+      <workItem from="1587625385910" duration="23000" />
+      <workItem from="1587626694227" duration="1279000" />
+      <workItem from="1587716630380" duration="1303000" />
+      <workItem from="1587738088635" duration="1350000" />
+      <workItem from="1587829254428" duration="26000" />
     </task>
     <servers />
   </component>
@@ -163,22 +168,26 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="681" height="766" key="GridCell.Tab.0.bottom" timestamp="1587274431932">
+    <state width="680" height="680" key="GridCell.Tab.0.bottom" timestamp="1587753715679">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="681" height="766" key="GridCell.Tab.0.bottom/1920.415.1280.800/0.0.1920.1080@0.0.1920.1080" timestamp="1587274431932" />
-    <state width="681" height="766" key="GridCell.Tab.0.center" timestamp="1587274431929">
+    <state width="448" height="702" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1587411680245" />
+    <state width="680" height="680" key="GridCell.Tab.0.bottom/1920.415.1280.800/0.0.1920.1080@0.0.1920.1080" timestamp="1587753715679" />
+    <state width="680" height="680" key="GridCell.Tab.0.center" timestamp="1587753715675">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="681" height="766" key="GridCell.Tab.0.center/1920.415.1280.800/0.0.1920.1080@0.0.1920.1080" timestamp="1587274431929" />
-    <state width="681" height="766" key="GridCell.Tab.0.left" timestamp="1587274431928">
+    <state width="448" height="702" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1587411680244" />
+    <state width="680" height="680" key="GridCell.Tab.0.center/1920.415.1280.800/0.0.1920.1080@0.0.1920.1080" timestamp="1587753715675" />
+    <state width="680" height="680" key="GridCell.Tab.0.left" timestamp="1587753715673">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="681" height="766" key="GridCell.Tab.0.left/1920.415.1280.800/0.0.1920.1080@0.0.1920.1080" timestamp="1587274431928" />
-    <state width="681" height="766" key="GridCell.Tab.0.right" timestamp="1587274431931">
+    <state width="448" height="702" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1587411680243" />
+    <state width="680" height="680" key="GridCell.Tab.0.left/1920.415.1280.800/0.0.1920.1080@0.0.1920.1080" timestamp="1587753715673" />
+    <state width="680" height="680" key="GridCell.Tab.0.right" timestamp="1587753715676">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="681" height="766" key="GridCell.Tab.0.right/1920.415.1280.800/0.0.1920.1080@0.0.1920.1080" timestamp="1587274431931" />
+    <state width="448" height="702" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1587411680245" />
+    <state width="680" height="680" key="GridCell.Tab.0.right/1920.415.1280.800/0.0.1920.1080@0.0.1920.1080" timestamp="1587753715676" />
     <state width="1878" height="376" key="GridCell.Tab.1.bottom" timestamp="1587265030307">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

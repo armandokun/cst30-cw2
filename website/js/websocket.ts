@@ -1,9 +1,9 @@
 //Open connection
-export const connection = new WebSocket(
+const connection = new WebSocket(
     "wss://z3fz92jyni.execute-api.us-east-1.amazonaws.com/dev_v1"
 );
 
-connection.onopen = function (event) {
+connection.onopen = async function (event) {
     console.log("Connected: " + JSON.stringify(event));
 
     /*
@@ -15,6 +15,19 @@ connection.onopen = function (event) {
 
      */
 
+    setTimeout(sentimentAnalysis, 0);
+
+    setTimeout(latestMetrics, 5000);
+
+}
+
+//Log errors
+connection.onerror = function (error) {
+    console.log("WebSocket Error: " + JSON.stringify(error));
+};
+
+// Retrieve sentiment analysis data
+function sentimentAnalysis() {
     // Twitter Sentimental Analysis Results
     const sentimentalObject: object = {
         action: "sendMessage",
@@ -23,14 +36,50 @@ connection.onopen = function (event) {
 
     connection.send(JSON.stringify(sentimentalObject));
     console.log('Message sent: ' + JSON.stringify(sentimentalObject));
+
     connection.onmessage = function (sentiment) {
-        console.log(JSON.parse(sentiment.data));
+        // console.log(JSON.parse(sentiment.data));
+        const sentimentData = JSON.parse(sentiment.data);
+        // init variables to store the sentiment percentage count
+        let neutralScore: number = 0;
+        let mixedScore: number = 0;
+        let positiveScore: number = 0;
+        let negativeScore: number = 0;
+        console.log(sentimentData);
+        sentimentData.forEach(item => {
+            switch (item.sentimental_value) {
+                case 'NEUTRAL':
+                    neutralScore++;
+                    break;
+                case 'MIXED':
+                    mixedScore++;
+                    break;
+                case 'POSITIVE':
+                    positiveScore++;
+                    break;
+                case 'NEGATIVE':
+                    negativeScore++;
+                    break;
+                default:
+                    console.log('UNKNOWN VALUE IN SENTIMENT DATA');
+                    break;
+            }
+        });
+        let sentimentObject = {
+            neutral: neutralScore,
+            mixed: mixedScore,
+            positive: positiveScore,
+            negative: negativeScore
+        };
 
+        document.getElementById("sentimentMessages").innerText = JSON.stringify(sentimentObject);
     };
+}
 
+// Get Latest Data from the Headset
+function latestMetrics() {
     // Latest Performance Metrics
     let latestMetrics: object[];
-
     const latestMetricsObject: object = {
         action: "getLatestData",
         data: "pm_metrics"
@@ -38,7 +87,6 @@ connection.onopen = function (event) {
 
     connection.send(JSON.stringify(latestMetricsObject));
     console.log("Message sent: " + JSON.stringify(latestMetricsObject));
-
     connection.onmessage = function (msg) {
 
         try {
@@ -56,16 +104,13 @@ connection.onopen = function (event) {
             }
         } catch (e) {
             console.log(e);
+            console.log("ERROR in latesetMetrics()");
         }
     };
-};
+}
 
-//Log errors
-connection.onerror = function (error) {
-    console.log("WebSocket Error: " + JSON.stringify(error));
-};
-
-function getMetricsData(metrics) {
+// Wraps up for Plotly
+function getMetricsData(metrics: any[]) {
 
     let metricsData: object[] = [];
 

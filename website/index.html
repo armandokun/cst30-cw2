@@ -7,31 +7,39 @@
 
     <!-- Include Plotly JavaScript library -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script defer type="module" src="js/websocket.js"></script>
+    <script src="js/websocket.js"></script>
     <title>CST3130 - Coursework 2</title>
 </head>
 <body>
-<h1>Performance Metrics</h1>
-<h2>Console</h2>
+<div id="console">
+    <h2>Console</h2>
 
-<p
-        style="border-style: solid; width: 500px; border-width: 1px; height: 150px; font-family: monospace;"
-        id="messages">
-</p>
+    <p
+            style="border-style: solid; width: 500px; border-width: 1px; height: 150px; font-family: monospace;"
+            id="messages">
+    </p>
+    <p
+            id="sentimentMessages"
+            hidden>
+    </p>
+</div>
+<h1>Performance Metrics</h1>
 
 <!-- Create DIVs to hold the charts -->
-<div id="engagementDiv" style="width:800px;height:400px;"></div>
-<div id="excitementDiv" style="width:800px;height:400px;"></div>
-<div id="stressDiv" style="width:800px;height:400px;"></div>
-<div id="relaxationDiv" style="width:800px;height:400px;"></div>
-<div id="interestDiv" style="width:800px;height:400px;"></div>
-<div id="focusDiv" style="width:800px;height:400px;"></div>
+<div id="engagementDiv" style="width: 50%"></div>
+<div id="excitementDiv" style="width: 50%"></div>
+<div id="stressDiv" style="width: 50%"></div>
+<div id="relaxationDiv" style="width: 50%"></div>
+<div id="interestDiv" style="width: 50%"></div>
+<div id="focusDiv" style="width: 50%"></div>
 
+<h1>Sentiment Analysis</h1>
+<div id="sentimentDiv"></div>
 </body>
 <script>
 
     // Draw Diagrams
-    function plotData() {
+    function drawPerformanceMetrics() {
         let dataConsole = document.getElementById("messages").innerText;
         let plotlyDivContent = document.getElementById("engagementDiv").innerHTML;
 
@@ -57,7 +65,7 @@
                     let chartTitle = metric.name.charAt(0).toUpperCase() + metric.name.slice(1);
 
                     // Chart location
-                    let charLocation = metric.name + "Div";
+                    let chartLocation = metric.name + "Div";
 
                     //Set up graph
                     let layout = {
@@ -72,21 +80,42 @@
 
                     if (plotlyDivContent === "") {
                         //Plot data
-                        Plotly.newPlot(charLocation, [trace], layout);
+                        Plotly.newPlot(chartLocation, [trace], layout);
                     } else {
                         // Add data
-                        Plotly.extendTraces(charLocation, {x: [metric.x], y: [metric.y]}, [0]);
+                        Plotly.extendTraces(chartLocation, {x: [metric.x], y: [metric.y]}, [0]);
                     }
                 });
             } catch (e) {
-                console.log("Headset is not connected");
+                console.log(e);
             }
+        } else {
+            console.log("Skipping this round...");
         }
-
     }
 
     // Init function every 10sec
-    setInterval(plotData, 10000);
+    setInterval(drawPerformanceMetrics, 10000);
+
+    function drawSentiment() {
+        let snt = JSON.parse(document.getElementById("sentimentMessages").innerText);
+        let data = [{
+            values: [snt.neutral, snt.mixed, snt.positive, snt.negative],
+            labels: ['Neutral', 'Mixed', 'Positive', 'Negative'],
+            type: 'pie',
+            title: 'Analysis out of 50 entries'
+        }];
+
+        const layout = {
+            height: 400,
+            width: 500
+        };
+
+        Plotly.newPlot('sentimentDiv', data, layout);
+    }
+
+    setTimeout(drawSentiment, 2500);
+
 
 </script>
 </html>

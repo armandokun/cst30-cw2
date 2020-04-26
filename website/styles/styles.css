@@ -1,6 +1,8 @@
 * {
     font-family: Helvetica, Arial, sans-serif;
 }
-.statusGreen {
-    color: lawngreen;
+
+#console {
+    margin: 10px;
+    float: right;
 }

@@ -24,7 +24,7 @@ let user: object = {
 let c: Cortex = new Cortex(user, socketUrl);
 let streams: string[];
 
-// init().then(r => console.log(r));
+init().then(r => console.log(r));
 
 async function init() {
     streams = ['met'];
@@ -32,4 +32,4 @@ async function init() {
 }
 
 // Scan and store tweets into DB
-// storeTweets();
+storeTweets();
